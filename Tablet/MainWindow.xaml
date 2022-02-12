@@ -1,0 +1,369 @@
+﻿<Window x:Class="TabletPicture.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:TabletPicture"
+        xmlns:WPFMediaKit="clr-namespace:WPFMediaKit.DirectShow.Controls;assembly=WPFMediaKit"
+        mc:Ignorable="d"
+        WindowStyle="None"
+        WindowState="Maximized"
+        Title="MainWindow" Height="1280" Width="1920" Background="Aquamarine">
+    <Window.Resources>
+        <Style x:Key="StartButtonStyle" TargetType="Button">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <StackPanel Orientation="Horizontal" >
+                            <Image Name="button_bg" Source="C:\CameraApp\TabletPicture\Assets\Button_Start_01.png" />
+                        </StackPanel>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsPressed" Value="True">
+                                <Setter Property="Source" Value="C:\CameraApp\TabletPicture\Assets\Button_Start_Press_01.png" TargetName="button_bg"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style x:Key="PhotoMenuButtonStyle" TargetType="Button">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <StackPanel Orientation="Horizontal" >
+                            <Image Name="button_bg" Source="C:\CameraApp\TabletPicture\Assets\Button_PhotoMenu.png" />
+                        </StackPanel>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsPressed" Value="True">
+                                <Setter Property="Source" Value="C:\CameraApp\TabletPicture\Assets\Button_PhotoMenu_Pressed.png" TargetName="button_bg"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style x:Key="PlayMosaicButtonStyle" TargetType="Button">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <StackPanel Orientation="Horizontal" >
+                            <Image Name="button_bg" Source="C:\CameraApp\TabletPicture\Assets\Button_PlayMosaic.png" />
+                        </StackPanel>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsPressed" Value="True">
+                                <Setter Property="Source" Value="C:\CameraApp\TabletPicture\Assets\Button_PlayMosaic_Pressed.png" TargetName="button_bg"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style x:Key="ExButtonStyle" TargetType="Button">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <StackPanel Orientation="Horizontal" >
+                            <Image Name="button_bg" Source="C:\CameraApp\TabletPicture\Assets\Button_X_01.png" />
+                        </StackPanel>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsPressed" Value="True">
+                                <Setter Property="Source" Value="C:\CameraApp\TabletPicture\Assets\Button_X_Press_01.png" TargetName="button_bg"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style x:Key="CloseButtonStyle" TargetType="Button">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <StackPanel Orientation="Horizontal" >
+                            <Image Name="button_bg" Source="C:\Camera\TabletPicture\Assets\Button_Close_01.png" />
+                        </StackPanel>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsPressed" Value="True">
+                                <Setter Property="Source" Value="C:\CameraApp\TabletPicture\Assets\Button_Close_Press_01.png" TargetName="button_bg"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style x:Key="TakeButtonStyle" TargetType="Button">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <StackPanel Orientation="Horizontal" >
+                            <Image Name="button_bg" Source="C:\CameraApp\TabletPicture\Assets\Button_TakePhoto_01.png" />
+                        </StackPanel>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsPressed" Value="True">
+                                <Setter Property="Source" Value="C:\CameraApp\TabletPicture\Assets\Button_TakePhoto_Press_01.png" TargetName="button_bg"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style x:Key="ChooseButtonStyle" TargetType="Button">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <StackPanel Orientation="Horizontal" >
+                            <Image Name="button_bg" Source="C:\CameraApp\TabletPicture\Assets\Button_ChoosePhoto_01.png" />
+                        </StackPanel>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsPressed" Value="True">
+                                <Setter Property="Source" Value="C:\CameraApp\TabletPicture\Assets\Button_ChoosePhoto_Press_01.png" TargetName="button_bg"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style x:Key="ReplayButtonStyle" TargetType="Button">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <StackPanel Orientation="Horizontal" >
+                            <Image Name="button_bg" Source="C:\CameraApp\TabletPicture\Assets\Button_Replay_01.png" />
+                        </StackPanel>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsPressed" Value="True">
+                                <Setter Property="Source" Value="C:\CameraApp\TabletPicture\Assets\Button_Replay_Press_01.png" TargetName="button_bg"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style x:Key="PlayMosaicVideoButtonStyle" TargetType="Button">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <StackPanel Orientation="Horizontal" >
+                            <Image Name="button_bg" Source="C:\CameraApp\TabletPicture\Assets\Button_PlayMosaicVideo.png" />
+                        </StackPanel>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsPressed" Value="True">
+                                <Setter Property="Source" Value="C:\CameraApp\TabletPicture\Assets\Button_PlayMosaicVideo_Pressed.png" TargetName="button_bg"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style x:Key="PhotoButtonStyle" TargetType="Button">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <StackPanel Orientation="Horizontal" >
+                            <Image Name="button_bg" Source="C:\CameraApp\TabletPicture\Assets\Button_Photo_01.png" />
+                        </StackPanel>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsPressed" Value="True">
+                                <Setter Property="Source" Value="C:\CameraApp\TabletPicture\Assets\Button_Photo_Press_01.png" TargetName="button_bg"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style x:Key="SendPhotoButtonStyle" TargetType="Button">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <StackPanel Orientation="Horizontal" >
+                            <Image Name="button_bg" Source="C:\CameraApp\TabletPicture\Assets\Button_SendPhoto_01.png" />
+                        </StackPanel>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsPressed" Value="True">
+                                <Setter Property="Source" Value="C:\CameraApp\TabletPicture\Assets\Button_SendPhoto_Press_01.png" TargetName="button_bg"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style x:Key="RetakeButtonStyle" TargetType="Button">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <StackPanel Orientation="Horizontal" >
+                            <Image Name="button_bg" Source="C:\CameraApp\TabletPicture\Assets\Button_RetakePhoto.png" />
+                        </StackPanel>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsPressed" Value="True">
+                                <Setter Property="Source" Value="C:\CameraApp\TabletPicture\Assets\Button_RetakePhoto_Pressed.png" TargetName="button_bg"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style x:Key="Photo1ButtonStyle" TargetType="Button">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <StackPanel Orientation="Horizontal" >
+                            <Image Name="button_bg" Source="C:\CameraApp\TabletPicture\LibraryImages\photo1.png" />
+                        </StackPanel>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style x:Key="Photo2ButtonStyle" TargetType="Button">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <StackPanel Orientation="Horizontal" >
+                            <Image Name="button_bg" Source="C:\CameraApp\TabletPicture\LibraryImages\photo2.png" />
+                        </StackPanel>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style x:Key="Photo3ButtonStyle" TargetType="Button">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <StackPanel Orientation="Horizontal" >
+                            <Image Name="button_bg" Source="C:\CameraApp\TabletPicture\LibraryImages\photo3.png" />
+                        </StackPanel>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style x:Key="SendImageButtonStyle" TargetType="Button">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <StackPanel Orientation="Horizontal" >
+                            <Image Name="button_bg" Source="C:\CameraApp\TabletPicture\Assets\Button_SendImage_01.png" />
+                        </StackPanel>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsPressed" Value="True">
+                                <Setter Property="Source" Value="C:\CameraApp\TabletPicture\Assets\Button_SendImage_Press_01.png" TargetName="button_bg"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style x:Key="HomeButtonStyle" TargetType="Button">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <StackPanel Orientation="Horizontal" >
+                            <Image Name="button_bg" Source="C:\CameraApp\TabletPicture\Assets\Button_Home_01.png" />
+                        </StackPanel>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsPressed" Value="True">
+                                <Setter Property="Source" Value="C:\CameraApp\TabletPicture\Assets\Button_Home_Press_01.png" TargetName="button_bg"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style x:Key="BackButtonStyle" TargetType="Button">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <StackPanel Orientation="Horizontal" >
+                            <Image Name="button_bg" Source="C:\CameraApp\TabletPicture\Assets\Button_Back_01.png" />
+                        </StackPanel>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsPressed" Value="True">
+                                <Setter Property="Source" Value="C:\CameraApp\TabletPicture\Assets\Button_Back_Press_01.png" TargetName="button_bg"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
+    <Grid>
+        <Grid Name="LandingPage" Visibility="Hidden">
+            <Image Name="background_LP" Source="C:\CameraApp\TabletPicture\Assets\BKG_Home_01.png" Visibility="Visible" />
+            <Button Name="PhotoMenuButton" Height="124" Width="604" Visibility="Visible" Margin="286,747,1030,409" Click="OnClick_GoToMenu" Style="{StaticResource PhotoMenuButtonStyle}" />
+            <Button Name="PlayMosaicButton" Height="124" Width="604" Visibility="Visible" Margin="1036,747,280,409" Click="OnClick_GoToPlayMosaic" Style="{StaticResource PlayMosaicButtonStyle}" />
+        </Grid>
+
+        <Grid Name="Menu" Visibility="Hidden">
+            <Image Name="background_M" Source="C:\CameraApp\TabletPicture\Assets\BKG_PhotoMenu_01.png" Visibility="Visible" />
+            <Image Name="title_M" Height="44" Width="385" Margin="767,53,768,1183" Source="C:\CameraApp\TabletPicture\Assets\Title_PhotoMenu.png" Visibility="Visible" />
+
+            <Button Name="PhotoButton" Height="124" Width="604" Visibility="Visible" Margin="658,395,658,761" Click="OnClick_GoToCamera" Style="{StaticResource TakeButtonStyle}" />
+            <Button Name="GalleryButton" Height="124" Width="604" Visibility="Visible" Margin="658,749,658,407" Click="OnClick_GoToGallery" Style="{StaticResource ChooseButtonStyle}" />
+            <!--
+            <Button Name="PlayLastButton" Height="124" Width="604" Visibility="Visible" Margin="0,758,0,398" Click="OnClick_PlayMosaic" Style="{StaticResource ReplayButtonStyle}" />
+            -->
+        </Grid>
+
+        <Grid Name="Camera" Visibility="Hidden">
+            <Image Name="background_C" Source="C:\CameraApp\TabletPicture\Assets\BKG_TakeLivePhoto_03.png" Visibility="Visible" />
+            <Image Name="title_C" Height="44" Width="491" Margin="714,53,715,1183" Source="C:\CameraApp\TabletPicture\Assets\Title_TakeLivePhoto.png" Visibility="Visible" />
+            <!--<cam:WebcamCapture Name="cameraCapture" Margin="0,100,0,380" Width="600" Height="600" />
+            -->
+            <Viewbox Margin="248,240,249,240" Stretch="Uniform">
+                <WPFMediaKit:VideoCaptureElement x:Name="VideoPlayer" DesiredPixelWidth="1920" DesiredPixelHeight="1080" ></WPFMediaKit:VideoCaptureElement>
+            </Viewbox>
+
+            <Image Name="photo_markers" Margin="584,264,584,264" Source="C:\CameraApp\TabletPicture\Assets\Photo_Markers.png" Visibility="Visible" />
+            <Image Name="photo_frame" Margin="248,240,249,240" Source="C:\CameraApp\TabletPicture\Assets\Photo_Frame_Edges.png" Visibility="Visible" />
+
+            <Button Name="TakePhotoButton" Height="128" Width="128" Visibility="Visible" Margin="1746,543,46,609" Click="OnClick_TakePhoto" Style="{StaticResource PhotoButtonStyle}" />
+            <Button Name="BackButton_C" Height="124" Width="354" Visibility="Visible" Margin="49,1104,1517,52" Click="OnClick_BackToMenu" Style="{StaticResource BackButtonStyle}" />
+        </Grid>
+
+        <Grid Name="Approval" Visibility="Hidden">
+            <Image Name="background_A" Source="C:\CameraApp\TabletPicture\Assets\BKG_ReviewPhoto_03.png" Visibility="Visible" />
+            <Image Name="title_A" Height="44" Width="644" Margin="639,53,637,1183" Source="C:\CameraApp\TabletPicture\Assets\Title_SendPhotoPreview.png" Visibility="Visible" />
+
+            <Image Name="capturedImage" Source="C:\CameraApp\TabletPicture\Assets\Photo_Frame.png" Width="800" Height="800" Margin="158,254,962,226" Visibility="Visible" />
+
+            <Button Name="ApprovePhotoButton" Height="124" Width="604" Visibility="Visible" Margin="1124,396,192,760" Click="OnClick_ApprovePhoto" Style="{StaticResource SendPhotoButtonStyle}" />
+            <Button Name="RejectPhotoButton" Height="124" Width="604" Visibility="Visible" Margin="1124,760,192,290" Click="OnClick_GoToCamera" Style="{StaticResource RetakeButtonStyle}" />
+        </Grid>
+
+        <Grid Name="Gallery" Visibility="Hidden">
+            <Image Name="background_G" Source="C:\CameraApp\TabletPicture\Assets\BKG_PhotoLibrary_03.png" Visibility="Visible" />
+            <Image Name="title_G" Height="43" Width="452" Margin="754,53,714,1184" Source="C:\CameraApp\TabletPicture\Assets\Title_PhotoLibrary.png" Visibility="Visible" />
+
+            <Button Name="StoredPhoto1" Height="400" Width="400" Visibility="Visible" Margin="310,390,1210,490" Click="OnClick_SelectPhoto" Style="{StaticResource Photo1ButtonStyle}" />
+            <Button Name="StoredPhoto2" Height="400" Width="400" Visibility="Visible" Margin="760,390,760,490" Click="OnClick_SelectPhoto" Style="{StaticResource Photo2ButtonStyle}" />
+            <Button Name="StoredPhoto3" Height="400" Width="400" Visibility="Visible" Margin="1210,390,310,490" Click="OnClick_SelectPhoto" Style="{StaticResource Photo3ButtonStyle}" />
+
+            <Image Name="photoSelector_1" Height="456" Width="456" Margin="282,362,1182,462" Source="C:\CameraApp\TabletPicture\Assets\Photo_Selector.png" Visibility="Hidden" />
+            <Image Name="photoSelector_2" Height="456" Width="456" Margin="732,362,732,462" Source="C:\CameraApp\TabletPicture\Assets\Photo_Selector.png" Visibility="Hidden" />
+            <Image Name="photoSelector_3" Height="456" Width="456" Margin="1182,362,282,462" Source="C:\CameraApp\TabletPicture\Assets\Photo_Selector.png" Visibility="Hidden" />
+
+            <Button Name="SendImageButton" Height="124" Width="604" Visibility="Visible" Margin="1267,1104,49,52" Click="OnClick_SendPhoto" Style="{StaticResource SendPhotoButtonStyle}" />
+            
+            <Button Name="BackButton_G" Height="124" Width="354" Visibility="Visible" Margin="49,1104,1517,52" Click="OnClick_BackToMenu" Style="{StaticResource BackButtonStyle}" />
+        </Grid>
+
+        <Grid Name="FinalScreen" Visibility="Hidden">
+            <Image Name="background_F" Source="C:\CameraApp\TabletPicture\Assets\BKG_Thank_You_03.png" Visibility="Visible" />
+
+            <Button Name="RestartButton" Height="125" Width="604" Visibility="Visible" Margin="658,761,658,394" Click="OnClick_BackToStart" Style="{StaticResource HomeButtonStyle}" />
+        </Grid>
+
+        <Grid Name="PlayMosaicVideoScreen" Visibility="Hidden">
+            <Image Name="background_PS" Source="C:\CameraApp\TabletPicture\Assets\BKG_PlayMosaic_03.png" Visibility="Visible" />
+            <Image Name="title_PS" Height="44" Width="382" Margin="754,53,714,1183" Source="C:\CameraApp\TabletPicture\Assets\Title_PlayMosaic.png" Visibility="Visible" />
+
+            <Image Name="Sample" Width="600" Height="580" Margin="682,235,638,465" Source="C:\CameraApp\TabletPicture\Assets\Photo_Selector.png" Visibility="Hidden" />
+            
+            <Button Name="PlayMosaicVideoButton" Height="124" Width="904" Visibility="Hidden" Margin="508,923,508,233" Click="OnClick_PlayMosaic" Style="{StaticResource PlayMosaicVideoButtonStyle}" />
+        </Grid>
+
+        <Image Name="top_bar" Source="C:\CameraApp\TabletPicture\Assets\Top_Bar_01.png" Margin="0,0,0,1130" Visibility="Visible" />
+        <Image Name="home_icon" Source="C:\CameraApp\TabletPicture\Assets\Home_Icon.png" Height="48" Width="49" Margin="1499,49,373,1182" Visibility="Visible" />
+        <Button Name="HomeButton" Height="150" Width="470" Visibility="Visible" Margin="1450,0,0,1130" Click="OnClick_BackToStart" Opacity="0" />
+
+        <Button Name="CloseButton" Height="150" Width="150" Visibility="Visible" Margin="0,0,1770,1130" Click="ExitProgram" Style="{StaticResource ExButtonStyle}" />
+    </Grid>
+</Window>
