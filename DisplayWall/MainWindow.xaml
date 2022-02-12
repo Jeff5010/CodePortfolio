@@ -1,0 +1,19 @@
+﻿<Window x:Class="DisplayWall.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:DisplayWall"
+        mc:Ignorable="d"
+        WindowStyle="None"
+        WindowState="Maximized"
+        WindowStartupLocation="CenterScreen"
+        Topmost="false"
+        Title="MainWindow" Height="1080" Width="1920" >
+    <Grid>
+        <MediaElement Name="idleLayer" Source="C:\DisplayWall\screensaver1.mp4" Visibility="Visible" MediaEnded="OnScreenSaverEnded" UnloadedBehavior="Manual" />
+        <MediaElement Name="videoLayer" Source="C:\DisplayWall\videoRender0.mp4" Visibility="Hidden" IsMuted="True" MediaEnded="OnVideoEnded" UnloadedBehavior="Manual" />
+
+        <Button Name="ExitButton" Height="100" Width="100" Visibility="Visible" Margin="1820,0,0,980" Click="ExitProgram" Opacity="0"/>
+    </Grid>
+</Window>
